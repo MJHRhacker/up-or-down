@@ -8,29 +8,27 @@ function buildDom(html) {
 
 function main () {
 
+  var splashMain;
+  var gameOverMain;
+
   var game; //instance of Game
 
   // ----- splash
 
 
-  var splashMain;
   var gameMain;
-  var gameOverMain;
 
   function buildSplash() {
-    splashMain = document.createElement('splashMain');
-    var h1 = document.createElement('h1');
-    var button = document.createElement('button');
-
-    button.innerText = 'Start';
-    h1.innerText = 'up or down';
-
-    splashMain.appendChild(h1);
-    splashMain.appendChild(button);
-
-
+    splashMain = buildDom(`
+      <main>
+        <h1>Up or Down</h1>
+        <button>Start</button>
+      </main>
+    `);
+    
     document.body.appendChild(splashMain);
 
+    var button = splashMain.querySelector('button');
     button.addEventListener('click', startGame);
   }
 
@@ -46,33 +44,30 @@ function main () {
     destroySplash();
     destroyGameOver();
 
-    // ---- temporary!!
+    
     
     game = new Game();
     game.start();
+    game.onOver(function(){
+      gameOver(game.score);
+    });
     
-    window.setTimeout(function(){
-      gameOver();
-    }, 3000);
   }
-
 
 
   function destroyGame() {
     game.destroy();
+    
   }
 
   // ----- game over
 
-  function gameOver () {
+  function gameOver (score) {
     destroyGame();
-    buildGameOver();
+    buildGameOver(score);
   }
 
-  function buildGameOver() {
-    
-    //---- @todo score
-    var score = 99;
+  function buildGameOver(score) {
 
     gameOverMain = buildDom(`
       <main>

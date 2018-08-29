@@ -75,12 +75,39 @@ p {
 
 /* ---- page specs ---- */
 
-.deck {
+.game {
+  text-align: center;
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game header {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.game .score {
+  flex: 1;
 }
 
 .game .label {
   font-weight: bold;
+}
+
+.game .value {
+  font-style: italic;
+}
+
+.game .timer {
+  flex: 1;
+}
+
+.game .deck {
+  flex: 4;
+  display: flex;
+  align-items: center;
 }
 
 .game .card {
@@ -96,6 +123,14 @@ p {
 
 .game .current-card {
   flex:1;
+}
+
+.game .card.correct {
+  background: lime;
+}
+
+.game .card.incorrect {
+  background: orangered;
 }
 
 .game .actions {
@@ -115,6 +150,11 @@ p {
   cursor: pointer;
 }
 
+.game .actions button[disabled] {
+  background-color: beige;
+  cursor: default;
+}
+
 .game .actions button:hover {
   background-color: gray;
 }
@@ -125,5 +165,12 @@ p {
 
 .game .next-card {
   flex: 1;
+}
+
+.game footer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 

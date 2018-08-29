@@ -1,13 +1,17 @@
 'use strict';
 
+function buildDom(html) {
+  var div = document.createElement('div');
+  div.innerHTML = html;
+  return div.children[0];
+}
+
 function main () {
 
+  var game; //instance of Game
+
   // ----- splash
-  function buildDom(html) {
-    var div = document.createElement('div');
-    div.innerHTML = html;
-    return div.children[0];
-  }
+
 
   var splashMain;
   var gameMain;
@@ -44,14 +48,9 @@ function main () {
 
     // ---- temporary!!
     
-    gameMain = buildDom(`
-      <main>
-        <h1>This is the game</h1>
-      </main>
-    `);
-  
-    document.body.appendChild(gameMain);
-  
+    game = new Game();
+    game.start();
+    
     window.setTimeout(function(){
       gameOver();
     }, 3000);
@@ -60,7 +59,7 @@ function main () {
 
 
   function destroyGame() {
-    gameMain.remove();
+    game.destroy();
   }
 
   // ----- game over
